@@ -18,7 +18,9 @@ export interface ExploreDataError {
 
 export interface HYDRATE {
   type: ACTION_TYPES.HYDRATE;
-  payload: exploreDataModel[];
+  payload: {
+    exploreDataReducer;
+  };
 }
 
 export type Actions =

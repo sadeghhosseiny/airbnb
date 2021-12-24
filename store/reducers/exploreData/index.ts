@@ -6,31 +6,37 @@ import { AppState } from "../../../appState";
 
 const initialState: AppState = {
   requesting: false,
+  success: false,
   data: null,
   error: "",
 };
 
-const exploreDataReducer = (state = initialState, action: Actions) => {
+const exploreDataReducer = (
+  state = initialState,
+  action: Actions,
+): AppState => {
   switch (action.type) {
     case HYDRATE: {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload.exploreDataReducer };
     }
     case ACTION_TYPES.EXPLORE_DATA_REQUESTING: {
       return {
         requesting: true,
         data: null,
         error: "",
+        success: false,
       };
     }
     case ACTION_TYPES.EXPLORE_DATA_SUCCESS: {
       return {
+        success: true,
+        error: "",
         requesting: false,
         data: action.payload,
-        error: "",
       };
     }
     case ACTION_TYPES.EXPLORE_DATA_ERROR: {
-      return { requesting: false, data: null, error: "errrrr" };
+      return { requesting: false, data: null, error: "errrrr", success: false };
     }
     default:
       return state;

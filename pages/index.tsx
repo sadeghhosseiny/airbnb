@@ -5,6 +5,7 @@ import Header from "../components/header/header";
 import { wrapper } from "../store";
 import { exploreDataRequesting } from "../store/actions";
 import { END } from "redux-saga";
+import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       </Head>
       <Header />
       <Banner />
+      <BodyOfContents />
     </div>
   );
 }

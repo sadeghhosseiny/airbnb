@@ -5,7 +5,6 @@ import { services } from "../../services";
 function* handleGetExploreData(action) {
   try {
     const res = yield call(services.getExploreData.getData, action.payload);
-    console.log("RES ", res);
     yield put({
       type: ACTION_TYPES.EXPLORE_DATA_SUCCESS,
       payload: res,

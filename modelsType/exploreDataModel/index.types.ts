@@ -1,5 +1,5 @@
 export interface exploreDataModel {
-  image: string;
+  img: string;
   location: string;
   distance: string;
 }
