@@ -13,7 +13,7 @@ function Banner() {
   // }, []);
 
   return (
-    <div className="relative  h-[500px] sm:h-[550px] lg:h-[700px] xl:h-[700px] 2xl:h-[1500px] -top-[116px]">
+    <div className="relative  h-[500px] sm:h-[550px] lg:h-[700px] xl:h-[700px] 2xl:h-[800px]">
       <div className="relative h-[500px] sm:h-[550px] lg:h-[700px] xl:h-[700px] 2xl:h-[800px]">
         <Image
           src="https://links.papareact.com/0fm"
