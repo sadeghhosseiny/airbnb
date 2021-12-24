@@ -45,7 +45,7 @@ function Header() {
       </div>
       <div
         className={`${
-          showWhiteHeader ? "text-gray-700" : "text-zinc-200"
+          showWhiteHeader ? "text-gray-700" : "text-white"
         } rounded-full py-2 flex items-center px-2 md:shadow-[0_4px_8px_-2px_rgba(-34,-21,-13,1.3)]`}
       >
         <input
@@ -57,8 +57,8 @@ function Header() {
       </div>
       <div
         className={`${
-          showWhiteHeader ? "text-gray-700" : "text-zinc-200"
-        } flex items-center space-x-4 justify-end text-gray-500`}
+          showWhiteHeader ? "text-gray-700" : "text-gray-300"
+        } flex items-center space-x-4 justify-end`}
       >
         <p>Become a host</p>
         <GlobeAltIcon className="h-6 cursor-pointer" />

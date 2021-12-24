@@ -1,7 +1,10 @@
-import '../styles/globals.css'
+import { AppProps } from "next/app";
+import { NextPage } from "next";
+import { wrapper } from "../store";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />;
+};
 
-export default MyApp
+export default wrapper.withRedux(MyApp);

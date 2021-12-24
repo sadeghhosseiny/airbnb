@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api = async (type, url, data) => {
+export const api = (type, url, data) => {
   const options = {
     method: type,
     url,
