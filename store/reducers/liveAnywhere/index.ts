@@ -1,25 +1,24 @@
 import { ACTION_TYPES } from "../../../constants/actionTypes";
 import { Actions } from "../../../constants/actionTypes/actionTypes.types";
-import { exploreDataModel } from "../../../modelsType/exploreDataModel/index.types";
 import { HYDRATE } from "next-redux-wrapper";
-import { ExploreState } from "../../../appState";
+import { LiveAnywherState } from "../../../appState";
 
-const initialState: ExploreState = {
+const initialState: LiveAnywherState = {
   requesting: false,
   success: false,
   data: null,
   error: "",
 };
 
-const exploreDataReducer = (
+const liveAnywhereReducer = (
   state = initialState,
   action: Actions,
-): ExploreState => {
+): LiveAnywherState => {
   switch (action.type) {
     case HYDRATE: {
-      return { ...state, ...action.payload.exploreDataReducer };
+      return { ...state, ...action.payload.liveAnywhereReducer };
     }
-    case ACTION_TYPES.EXPLORE_DATA_REQUESTING: {
+    case ACTION_TYPES.LIVE_ANYWHERE_REQUESTING: {
       return {
         requesting: true,
         data: null,
@@ -27,7 +26,7 @@ const exploreDataReducer = (
         success: false,
       };
     }
-    case ACTION_TYPES.EXPLORE_DATA_SUCCESS: {
+    case ACTION_TYPES.LIVE_ANYWHERE_SUCCESS: {
       return {
         success: true,
         error: "",
@@ -35,7 +34,7 @@ const exploreDataReducer = (
         data: action.payload,
       };
     }
-    case ACTION_TYPES.EXPLORE_DATA_ERROR: {
+    case ACTION_TYPES.LIVE_ANYWHERE_ERROR: {
       return { requesting: false, data: null, error: "errrrr", success: false };
     }
     default:
@@ -43,4 +42,4 @@ const exploreDataReducer = (
   }
 };
 
-export default exploreDataReducer;
+export default liveAnywhereReducer;

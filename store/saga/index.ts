@@ -4,7 +4,10 @@ import { services } from "../../services";
 
 function* handleGetExploreData(action) {
   try {
-    const res = yield call(services.getExploreData.getData, action.payload);
+    const res = yield call(
+      services.getHomePageData.getExploreData,
+      action.payload,
+    );
     yield put({
       type: ACTION_TYPES.EXPLORE_DATA_SUCCESS,
       payload: res,
@@ -18,6 +21,30 @@ function* getExploreDataWatcher() {
   yield takeLatest(ACTION_TYPES.EXPLORE_DATA_REQUESTING, handleGetExploreData);
 }
 
+//////////////////////////////////////////////////
+
+function* handleGetLiveAnywhereData(action) {
+  try {
+    const res = yield call(
+      services.getHomePageData.getLiveAnywhereData,
+      action.payload,
+    );
+    yield put({
+      type: ACTION_TYPES.LIVE_ANYWHERE_SUCCESS,
+      payload: res,
+    });
+  } catch (err) {
+    console.log("this is err2", err.message);
+  }
+}
+
+function* getLiveAnywhereDataWatcher() {
+  yield takeLatest(
+    ACTION_TYPES.LIVE_ANYWHERE_REQUESTING,
+    handleGetLiveAnywhereData,
+  );
+}
+
 export default function* rootSaga() {
-  yield all([getExploreDataWatcher()]);
+  yield all([getExploreDataWatcher(), getLiveAnywhereDataWatcher()]);
 }
