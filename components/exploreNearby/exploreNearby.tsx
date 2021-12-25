@@ -10,8 +10,8 @@ type itemTypes = {
 
 function ExploreNearby({ item }: itemTypes) {
   return (
-    <div className="flex items-center px-3 hover:bg-gray-300 rounded-md py-4 group shadow-md transition-all duration-300 overflow-hidden">
-      <div className="relative h-32 w-32 cursor-pointer group-hover:scale-125 transition-all transform duration-300">
+    <div className="flex items-center cursor-pointer px-3 hover:bg-gray-300 rounded-md py-4 group shadow-md transition-all duration-300 overflow-hidden">
+      <div className="relative h-32 w-32 group-hover:scale-125 transition-all transform duration-300">
         <Image
           src={item.img}
           objectFit="contain"
