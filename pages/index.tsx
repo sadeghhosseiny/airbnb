@@ -3,7 +3,10 @@ import Head from "next/head";
 import Banner from "../components/banner/banner";
 import Header from "../components/header/header";
 import { wrapper } from "../store";
-import { exploreDataRequesting } from "../store/actions";
+import {
+  exploreDataRequesting,
+  liveAnywhereDataRequesting,
+} from "../store/actions";
 import { END } from "redux-saga";
 import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 
@@ -25,6 +28,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store): any =>
     async ({ req, res }) => {
       await store?.dispatch(exploreDataRequesting(req));
+      await store?.dispatch(liveAnywhereDataRequesting(req));
       store?.dispatch(END);
       await store?.sagaTask?.toPromise();
     },
