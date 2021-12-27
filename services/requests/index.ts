@@ -8,4 +8,7 @@ export const getHomePageData = {
   getLiveAnywhereData(data) {
     return api("GET", `${BASE_URL}/zp1`, data);
   },
+  getSearchData(data) {
+    return api("GET", `${BASE_URL}/isz`, data);
+  },
 };

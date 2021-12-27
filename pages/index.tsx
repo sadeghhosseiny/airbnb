@@ -9,6 +9,7 @@ import {
 } from "../store/actions";
 import { END } from "redux-saga";
 import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
+import Footer from "../components/footer/footer";
 
 export default function Home() {
   return (
@@ -17,9 +18,10 @@ export default function Home() {
         <title>Airbnb</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header searchPage={false} />
       <Banner />
       <BodyOfContents />
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .dateBtn {
+    @apply flex-grow text-red-400 py-2 rounded-lg hover:bg-red-400 hover:text-white transition duration-300;
+  }
+}

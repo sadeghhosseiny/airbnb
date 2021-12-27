@@ -1,6 +1,7 @@
 import { ACTION_TYPES } from ".";
 import { exploreDataModel } from "../../modelsType/exploreDataModel/index.types";
 import { liveAnywhereDataModel } from "../../modelsType/liveAnywhereModel/index.types";
+import { searchDataModel } from "../../modelsType/searchDataModel/index.types";
 
 export interface ExploreDataRequesting {
   type: ACTION_TYPES.EXPLORE_DATA_REQUESTING;
@@ -32,11 +33,27 @@ export interface LiveAnywhereError {
   payload: string;
 }
 
+export interface SearchDataRequesting {
+  type: ACTION_TYPES.SEARCH_DATA_REQUESTING;
+  payload: searchDataModel[];
+}
+
+export interface SearchDataSuccess {
+  type: ACTION_TYPES.SEARCH_DATA_SUCCESS;
+  payload: searchDataModel[];
+}
+
+export interface SearchDataError {
+  type: ACTION_TYPES.SEARCH_DATA_ERROR;
+  payload: string;
+}
+
 export interface HYDRATE {
   type: ACTION_TYPES.HYDRATE;
   payload: {
     liveAnywhereReducer;
     exploreDataReducer;
+    searchDataReducer;
   };
 }
 
@@ -47,4 +64,7 @@ export type Actions =
   | LiveAnywhereRequesting
   | LiveAnywhereSuccess
   | LiveAnywhereError
+  | SearchDataRequesting
+  | SearchDataSuccess
+  | SearchDataError
   | HYDRATE;
