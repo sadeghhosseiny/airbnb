@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers";
 import ExploreNearby from "../exploreNearby/exploreNearby";
+import LargeCard from "../largeCard/largeCard";
 import LiveAnywhere from "../liveAnywhere/liveAnywhere";
 
 function BodyOfContents() {
@@ -35,6 +36,14 @@ function BodyOfContents() {
         {state?.liveAnywhereData?.map((item, i) => (
           <LiveAnywhere key={i} item={item} />
         ))}
+      </div>
+      <div>
+        <LargeCard
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlist curated by Airbnb."
+          buttonText="Get Inspired"
+        />
       </div>
     </div>
   );
