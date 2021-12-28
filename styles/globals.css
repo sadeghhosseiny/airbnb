@@ -8,6 +8,6 @@
   }
   .pill {
     @apply cursor-pointer p-2 border rounded-full hover:shadow-lg active:scale-90 active:bg-gray-200 
-    transition transform duration-200;
+    transition transform duration-200 bg-white;
   }
 }

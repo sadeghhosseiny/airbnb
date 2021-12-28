@@ -78,12 +78,12 @@ function Header({ searchPage, placeHolder }: propTypes) {
          searchPage && !showWhiteHeader
            ? "bg-white p-8"
            : showWhiteHeader
-           ? "bg-white p-5"
+           ? "bg-white p-5 shadow-lg"
            : inputVal
            ? "bg-white p-8"
            : "bg-transparent p-8"
        } 
-    transition-all transform duration-500 shadow-md`}
+    transition-all transform duration-500`}
     >
       <div
         onClick={() => router.push("/")}
@@ -103,7 +103,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
           showWhiteHeader || inputVal || searchPage
             ? "text-gray-700"
             : "text-white"
-        } rounded-full py-2 flex items-center px-2 md:shadow-[0_4px_8px_-2px_rgba(-34,-21,-13,1.3)]`}
+        } col-span-2 md:col-span-1 rounded-full py-2 flex items-center px-2 shadow-[0_4px_8px_-2px_rgba(-34,-21,-13,1.3)]`}
       >
         <input
           value={inputVal}
@@ -121,9 +121,9 @@ function Header({ searchPage, placeHolder }: propTypes) {
             : "text-gray-300"
         } flex items-center space-x-4 justify-end`}
       >
-        <p>Become a host</p>
-        <GlobeAltIcon className="h-6 cursor-pointer" />
-        <div className="flex items-center p-2 border-2 space-x-2 rounded-full">
+        <p className="hidden md:block">Become a host</p>
+        <GlobeAltIcon className="h-6 cursor-pointer hidden md:block" />
+        <div className="hidden md:flex items-center p-2 border-2 space-x-2 rounded-full">
           <MenuIcon className="h-6" />
           <UserCircleIcon className="h-6" />
         </div>

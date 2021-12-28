@@ -7,7 +7,7 @@ function AllPlaces() {
     (state: RootState) => state?.searchDataReducer?.data,
   );
   return (
-    <div className="flex flex-col space-y-5">
+    <div className="flex flex-col space-y-5 mb-8">
       {state?.map((place, i) => (
         <Place place={place} key={i} />
       ))}

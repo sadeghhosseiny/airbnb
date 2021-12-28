@@ -10,6 +10,7 @@ import {
 import { END } from "redux-saga";
 import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 import Footer from "../components/footer/footer";
+import MobileNav from "../components/mobileNav/mobileNav";
 
 export default function Home() {
   return (
