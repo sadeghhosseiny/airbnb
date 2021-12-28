@@ -18,7 +18,7 @@ export default function Home() {
         <title>Airbnb</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header searchPage={false} />
+      <Header placeHolder="" searchPage={false} />
       <Banner />
       <BodyOfContents />
       <Footer />

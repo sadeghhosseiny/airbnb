@@ -10,17 +10,21 @@ import { useEffect, useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
+import { useRouter } from "next/router";
 
 type propTypes = {
   searchPage: boolean;
+  placeHolder: string;
 };
 
-function Header({ searchPage }: propTypes) {
+function Header({ searchPage, placeHolder }: propTypes) {
   const [showWhiteHeader, setShowWhiteHeader] = useState(false);
   const [inputVal, setInputVal] = useState<string | null>("");
   const [startDate, setstartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [noOfGuests, setNoOfGuests] = useState("");
+  const [noOfGuests, setNoOfGuests] = useState<number>(1);
+
+  const router = useRouter();
 
   const handleSetInput = (e: React.FormEvent<HTMLInputElement>) => {
     setInputVal(e.currentTarget.value);
@@ -28,6 +32,18 @@ function Header({ searchPage }: propTypes) {
 
   const cancelBooking = (e: React.MouseEvent<HTMLButtonElement>) => {
     setInputVal("");
+  };
+
+  const handleGoToSearchPage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    router.push({
+      pathname: "/search",
+      query: {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        noOfGuests,
+        location: inputVal,
+      },
+    });
   };
 
   const handleSelectDay = (ranges) => {
@@ -70,6 +86,7 @@ function Header({ searchPage }: propTypes) {
     transition-all transform duration-500 shadow-md`}
     >
       <div
+        onClick={() => router.push("/")}
         className={`${
           showWhiteHeader ? "h-8" : "h-10"
         }  relative flex items-center my-auto cursor-pointer transition-all transform duration-500`}
@@ -93,7 +110,7 @@ function Header({ searchPage }: propTypes) {
           onChange={handleSetInput}
           className="pl-1 bg-transparent outline-none flex-grow"
           type="text"
-          placeholder="Start your Search"
+          placeholder={`${placeHolder || "Start your Search"}`}
         />
         <SearchIcon className="h-8 bg-red-400 rounded-full p-2 cursor-pointer" />
       </div>
@@ -127,7 +144,8 @@ function Header({ searchPage }: propTypes) {
             <input
               type="number"
               className="outline-none w-12 text-lg ml-2 text-red-400"
-              onChange={(e) => setNoOfGuests(e.target.value)}
+              value={noOfGuests}
+              onChange={(e) => setNoOfGuests(e.target.valueAsNumber)}
               min={1}
             />
           </div>
@@ -135,7 +153,9 @@ function Header({ searchPage }: propTypes) {
             <button className="dateBtn" onClick={cancelBooking}>
               Cancel
             </button>
-            <button className="dateBtn">Search</button>
+            <button className="dateBtn" onClick={handleGoToSearchPage}>
+              Search
+            </button>
           </div>
         </div>
       )}

@@ -6,4 +6,8 @@
   .dateBtn {
     @apply flex-grow text-red-400 py-2 rounded-lg hover:bg-red-400 hover:text-white transition duration-300;
   }
+  .pill {
+    @apply cursor-pointer p-2 border rounded-full hover:shadow-lg active:scale-90 active:bg-gray-200 
+    transition transform duration-200;
+  }
 }
