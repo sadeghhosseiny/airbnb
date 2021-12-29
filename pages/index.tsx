@@ -11,6 +11,7 @@ import { END } from "redux-saga";
 import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 import Footer from "../components/footer/footer";
 import MobileNav from "../components/mobileNav/mobileNav";
+import GifBanner from "../components/gifBanner/gifBanner";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       </Head>
       <Header placeHolder="" searchPage={false} />
       <Banner />
+      <GifBanner />
       <BodyOfContents />
       <Footer />
     </div>

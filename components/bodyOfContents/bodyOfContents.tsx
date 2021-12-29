@@ -12,7 +12,7 @@ function BodyOfContents() {
   }));
 
   return (
-    <div className="relative my-10 p-10 max-w-7xl mx-auto shadow-md rounded-md bg-white">
+    <div className="relative m-5 p-5 lg:my-10 lg:p-10 max-w-7xl xl:mx-auto shadow-md rounded-md bg-white">
       <h1 className="text-3xl font-sans mb-5">Explore Nearby</h1>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {state?.exploreData?.map((item, i) => (

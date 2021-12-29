@@ -1,17 +1,6 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
-// import { motion, useTransform, useMotionValue } from "framer-motion";
 
 function Banner() {
-  // const [offsetY, setOffsetY] = useState(0);
-  // const handleScroll = () => setOffsetY(window.pageYOffset);
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-
   return (
     <div className="relative h-[500px] sm:h-[550px] lg:h-[700px] xl:h-[700px] 2xl:h-[800px]">
       <div className="relative h-[500px] sm:h-[550px] lg:h-[700px] xl:h-[700px] 2xl:h-[800px]">
@@ -22,7 +11,9 @@ function Banner() {
         />
       </div>
       <div className="absolute top-1/2 w-full text-center">
-        <p className="text-4xl font-bold">Not sure where to go? Perfect.</p>
+        <p className="text-2xl lg:text-4xl font-bold">
+          Not sure where to go? Perfect.
+        </p>
         <button className="px-7 py-4 rounded-full mt-4 bg-white shadow-xl active:scale-90 transition transform duration-200">
           <p
             className="font-bold

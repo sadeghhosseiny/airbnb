@@ -10,7 +10,7 @@ type largeCardTypes = {
 function LargeCard({ img, title, description, buttonText }: largeCardTypes) {
   return (
     <section className="relative py-16">
-      <div className="relative h-96 min-w-[300px] shadow-lg rounded-xl">
+      <div className="relative h-96 shadow-lg rounded-xl">
         <Image
           src={img}
           layout="fill"

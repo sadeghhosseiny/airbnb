@@ -36,11 +36,21 @@ function Search() {
           300+ stays - {range} - for {noOfGuests} guests
         </p>
         <h1 className="text-2xl font-semibold">Stays in {location}</h1>
-        <div className="flex items-centers space-x-4 mb-6">
-          <div className="pill">Cancellation Flexebility</div>
-          <div className="pill">Type of Place</div>
-          <div className="pill">Price</div>
-          <div className="pill">Rooms and Beds</div>
+        <div className="w-full">
+          <div className="max-w-5xl space-x-4 space-y-3">
+            <div className="inline-block w-auto">
+              <div className="pill">Cancellation Flexebility</div>
+            </div>
+            <div className="inline-block w-auto">
+              <div className="pill">Type of Place</div>
+            </div>
+            <div className="inline-block w-auto">
+              <div className="pill">Price</div>
+            </div>
+            <div className="inline-block w-auto">
+              <div className="pill">Rooms and Beds</div>
+            </div>
+          </div>
         </div>
       </div>
       <AllPlaces />
