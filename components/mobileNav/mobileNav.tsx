@@ -7,7 +7,7 @@ function MobileNav() {
     <div className="block md:hidden z-50 relative">
       <div
         onClick={() => setIsClicked(!isClicked)}
-        className={`cursor-pointer flex flex-col justify-center items-center w-[60px] h-[60px] 
+        className={`cursor-pointer flex flex-col justify-center items-center w-[50px] h-[50px] 
       fixed right-10 bottom-12 rounded-full ${
         isClicked ? "bg-red-500" : "bg-gray-900"
       } transition duration-300`}
@@ -15,17 +15,17 @@ function MobileNav() {
         <span
           className={`${
             isClicked ? "rotate-45" : "-translate-y-2"
-          } absolute transition transform duration-300 h-1 w-8 bg-gray-300 rounded-lg`}
+          } absolute transition transform duration-300 h-[3px] w-7 bg-gray-300 rounded-lg`}
         ></span>
         <span
           className={`${
             isClicked && "opacity-0"
-          } transition transform duration-300 h-1 w-8 bg-gray-300 rounded-lg`}
+          } transition transform duration-300 h-[3px] w-7 bg-gray-300 rounded-lg`}
         ></span>
         <span
           className={`${
             isClicked ? "-rotate-45" : "translate-y-2"
-          } absolute transition transform duration-300 h-1 w-8 bg-gray-300 rounded-lg`}
+          } absolute transition transform duration-300 h-[3px] w-7 bg-gray-300 rounded-lg`}
         ></span>
       </div>
       <div

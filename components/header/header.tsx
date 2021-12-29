@@ -9,8 +9,10 @@ import {
 import { useEffect, useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRangePicker } from "react-date-range";
+import { DateRangePicker, DateRange } from "react-date-range";
 import { useRouter } from "next/router";
+import logo from "../../airbnb-logo.png";
+import ReservePlaceCalender from "../reservePlaceCalender/reservePlaceCalender";
 
 type propTypes = {
   searchPage: boolean;
@@ -20,41 +22,11 @@ type propTypes = {
 function Header({ searchPage, placeHolder }: propTypes) {
   const [showWhiteHeader, setShowWhiteHeader] = useState(false);
   const [inputVal, setInputVal] = useState<string | null>("");
-  const [startDate, setstartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [noOfGuests, setNoOfGuests] = useState<number>(1);
 
   const router = useRouter();
 
   const handleSetInput = (e: React.FormEvent<HTMLInputElement>) => {
     setInputVal(e.currentTarget.value);
-  };
-
-  const cancelBooking = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setInputVal("");
-  };
-
-  const handleGoToSearchPage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    router.push({
-      pathname: "/search",
-      query: {
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        noOfGuests,
-        location: inputVal,
-      },
-    });
-  };
-
-  const handleSelectDay = (ranges) => {
-    setstartDate(ranges.Selection.startDate);
-    setEndDate(ranges.Selection.endDate);
-  };
-
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: "Selection",
   };
 
   useEffect(() => {
@@ -73,7 +45,9 @@ function Header({ searchPage, placeHolder }: propTypes) {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 grid grid-cols-3
+      className={`fixed w-full top-0 z-50 ${
+        inputVal ? "grid" : "sm-max:flex sm-min:grid"
+      } sm-max:justify-between grid-cols-3 z-10
        ${
          searchPage && !showWhiteHeader
            ? "bg-white p-8"
@@ -83,19 +57,27 @@ function Header({ searchPage, placeHolder }: propTypes) {
            ? "bg-white p-8"
            : "bg-transparent p-8"
        } 
-    transition-all transform duration-500`}
+    transition-all sm-max:p-4 transform duration-500`}
     >
       <div
         onClick={() => router.push("/")}
         className={`${
           showWhiteHeader ? "h-8" : "h-10"
-        }  relative flex items-center my-auto cursor-pointer transition-all transform duration-500`}
+        }  relative flex items-center my-auto sm-max:w-10 sm-max:h-10 cursor-pointer transition-all transform duration-500`}
       >
         <Image
           src="https://links.papareact.com/qd3"
           layout="fill"
           objectFit="contain"
           objectPosition="left"
+          className="sm-max:invisible"
+        />
+        <Image
+          src={logo}
+          layout="fill"
+          objectFit="contain"
+          objectPosition="left"
+          className="sm-min:invisible sm-max:visible"
         />
       </div>
       <div
@@ -103,7 +85,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
           showWhiteHeader || inputVal || searchPage
             ? "text-gray-700"
             : "text-white"
-        } col-span-2 md:col-span-1 rounded-full py-2 flex items-center px-2 shadow-[0_4px_8px_-2px_rgba(-34,-21,-13,1.3)]`}
+        } col-span-2 md:col-span-1 focus-within:flex-1 transition-all transform duration-300 sm-max:ml-auto rounded-full py-2 flex items-center px-2 shadow-[0_4px_8px_-2px_rgba(-34,-21,-13,1.3)]`}
       >
         <input
           value={inputVal}
@@ -119,46 +101,16 @@ function Header({ searchPage, placeHolder }: propTypes) {
           showWhiteHeader || inputVal || searchPage
             ? "text-gray-700"
             : "text-gray-300"
-        } flex items-center space-x-4 justify-end`}
+        } hidden md:flex items-center space-x-4 justify-end`}
       >
-        <p className="hidden md:block">Become a host</p>
+        <p>Become a host</p>
         <GlobeAltIcon className="h-6 cursor-pointer hidden md:block" />
-        <div className="hidden md:flex items-center p-2 border-2 space-x-2 rounded-full">
+        <div className="flex items-center p-2 border-2 space-x-2 rounded-full">
           <MenuIcon className="h-6" />
           <UserCircleIcon className="h-6" />
         </div>
       </div>
-      {inputVal && (
-        <div className="flex flex-col col-span-3 p-2 mt-2 shadow-lg rounded-lg mx-auto">
-          <DateRangePicker
-            ranges={[selectionRange]}
-            minDate={new Date()}
-            rangeColors={["#FD5B61"]}
-            onChange={handleSelectDay}
-          />
-          <div className="flex items-center border-b mx-4 mb-4">
-            <h1 className="text-2xl flex-grow font-semibold">
-              Number of Guests
-            </h1>
-            <UsersIcon className="h-5" />
-            <input
-              type="number"
-              className="outline-none w-12 text-lg ml-2 text-red-400"
-              value={noOfGuests}
-              onChange={(e) => setNoOfGuests(e.target.valueAsNumber)}
-              min={1}
-            />
-          </div>
-          <div className="flex space-x-3">
-            <button className="dateBtn" onClick={cancelBooking}>
-              Cancel
-            </button>
-            <button className="dateBtn" onClick={handleGoToSearchPage}>
-              Search
-            </button>
-          </div>
-        </div>
-      )}
+      <ReservePlaceCalender setInputVal={setInputVal} inputVal={inputVal} />
     </header>
   );
 }

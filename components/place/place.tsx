@@ -46,15 +46,15 @@ function Place({ place }: placeType) {
           />
         </div>
         <h4 className="text-2xl font-semibold border-b mb-2 pb-2">{title}</h4>
-        <p className="text-gray-600">{description}</p>
+        <p className="text-gray-600 mb-4">{description}</p>
         <div className="flex justify-between items-end flex-grow">
           <div className="flex items-center">
             <StarIcon className="h-5 text-orange-500" />
             <p className="ml-2">{star}</p>
           </div>
           <div>
-            <h1 className="text-2xl font-semibold">{price}</h1>
-            <p className="text-gray-600 text-right mt-2">{total}</p>
+            <h1 className="text-lg md:text-2xl font-semibold">{price}</h1>
+            <p className="text-gray-600 text-right md:mt-2">{total}</p>
           </div>
         </div>
       </div>
