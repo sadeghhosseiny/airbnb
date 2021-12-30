@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import MobileNav from "../components/mobileNav/mobileNav";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
+import { useState } from "react";
 
 const progress = new ProgressBar({
   color: "#FE595E",
@@ -19,7 +20,7 @@ Router.events.on("routeChangeError", progress.finish);
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-slate-800 transition duration-300">
       <MobileNav />
       <Component {...pageProps} />
     </div>

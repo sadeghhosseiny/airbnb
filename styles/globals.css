@@ -11,3 +11,22 @@
     transition transform duration-200 bg-white;
   }
 }
+
+.dark-style .rdrStaticRange,
+.dark-style .rdrDefinedRangesWrapper {
+  color: white;
+  background: black !important;
+  transition: 0.3s linear;
+}
+
+.dark-style .rdrDayNumber span {
+  color: white;
+}
+
+.dark-style .rdrCalendarWrapper {
+  background: black !important;
+}
+
+.dark-style .rdrStaticRangeLabel:hover {
+  background: #3c424a !important;
+}

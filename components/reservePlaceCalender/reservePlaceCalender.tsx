@@ -5,7 +5,7 @@ import { DateRangePicker, DateRange } from "react-date-range";
 import { useRouter } from "next/router";
 import { UsersIcon } from "@heroicons/react/solid";
 
-function ReservePlaceCalender({ setInputVal, inputVal }) {
+function ReservePlaceCalender({ colorTheme, setInputVal, inputVal }) {
   const [startDate, setstartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState<number>(1);
@@ -41,7 +41,11 @@ function ReservePlaceCalender({ setInputVal, inputVal }) {
 
   return (
     inputVal && (
-      <div className="flex flex-col col-span-3 p-2 mt-2 shadow-lg rounded-lg mx-auto">
+      <div
+        className={`${
+          colorTheme == "light" ? "dark-style" : ""
+        } flex flex-col col-span-3 p-2 mt-2 shadow-lg rounded-lg mx-auto dark:bg-black dark:text-gray-200`}
+      >
         <div className="sm-max:hidden">
           <DateRangePicker
             ranges={[selectionRange]}
