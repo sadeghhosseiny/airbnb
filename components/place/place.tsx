@@ -24,7 +24,7 @@ function Place({ place }: placeType) {
 
   return (
     <div
-      className="realtive bg-white shadow-lg mx-20 p-3 rounded-lg flex flex-col md:flex-row flex-grow
+      className="realtive bg-white dark:bg-gray-900 shadow-lg mx-20 p-3 rounded-lg flex flex-col md:flex-row flex-grow
      cursor-pointer group hover:shadow-2xl transition duration-300"
     >
       <div className="relative mb-5 md:mb-0 h-64 w-full md:h-72 md:w-72 lg:h-80 lg:w-80 rounded-lg overflow-hidden">

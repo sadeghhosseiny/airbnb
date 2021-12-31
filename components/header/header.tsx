@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import logo from "../../airbnb-logo.png";
 import ReservePlaceCalender from "../reservePlaceCalender/reservePlaceCalender";
 import { MoonIcon, SunIcon } from "@heroicons/react/outline";
-import useDarkMode from "../hook/hook";
+import useDarkMode from "../../hook/useDarkMode";
 
 type propTypes = {
   searchPage: boolean;
@@ -24,7 +24,6 @@ function Header({ searchPage, placeHolder }: propTypes) {
   const [inputVal, setInputVal] = useState<string | null>("");
 
   const [colorTheme, setTheme]: any = useDarkMode();
-  console.log("CT ", colorTheme, "ST ", setTheme);
 
   const router = useRouter();
 
@@ -60,9 +59,8 @@ function Header({ searchPage, placeHolder }: propTypes) {
            ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
            : "bg-transparent p-8"
        } 
-    transition-all sm-max:p-4 transform duration-500`}
+    transition-all sm-max:p-4 transform duration-300`}
     >
-      {console.log("CT", colorTheme)}
       <div
         onClick={() => router.push("/")}
         className={`${
@@ -107,7 +105,8 @@ function Header({ searchPage, placeHolder }: propTypes) {
             : "text-gray-300"
         } hidden md:flex items-center space-x-4 justify-end`}
       >
-        <p className="cursor-pointer">Become a host</p>
+        <p className="cursor-pointer hidden lg:block">Become a host</p>
+        {console.log("CT header ", colorTheme)}
         {colorTheme == "dark" ? (
           <MoonIcon
             onClick={() => setTheme(colorTheme)}

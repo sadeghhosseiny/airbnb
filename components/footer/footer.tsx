@@ -87,7 +87,7 @@ function Footer() {
     },
   ];
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 dark:bg-gray-900 dark:text-gray-200 transition duration-300">
       <div className="max-w-6xl space-y-10 md:space-y-0 mx-16 flex flex-col md:flex-row md:mx-auto justify-evenly py-12">
         {Links.map((item, index) => (
           <FooterItems key={index} item={item} />
