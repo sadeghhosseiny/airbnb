@@ -12,19 +12,39 @@ import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 import Footer from "../components/footer/footer";
 import MobileNav from "../components/mobileNav/mobileNav";
 import GifBanner from "../components/gifBanner/gifBanner";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <div>
       <Head>
         <title>Airbnb</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="https://www.airbnb.co.in/favicon.ico" />
       </Head>
-      <Header placeHolder="" searchPage={false} />
-      <Banner />
-      <GifBanner />
-      <BodyOfContents />
-      <Footer />
+      {loading ? (
+        <div className="flex items-center justify-center min-h-screen flex-col">
+          <img
+            className=""
+            src="https://media.giphy.com/media/5YbQYuAnMfNkUU6GpT/giphy.gif"
+          />
+        </div>
+      ) : (
+        <>
+          <Header placeHolder="" searchPage={false} />
+          <Banner />
+          <GifBanner />
+          <BodyOfContents />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

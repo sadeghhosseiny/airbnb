@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
-// localStorage is for saving light and darkMode because when page regenerated this function run again and if we in darkMode it
+// localStorage is for saving light and darkMode because when page changed this function run again and if we in darkMode it
 // change to lighMode
 
 export function useDarkMode() {
   const [theme, setTheme] = useState(
-    typeof window !== "undefined" ? localStorage.theme : "",
+    typeof window !== "undefined" ? localStorage.theme : "light",
   );
   const colorTheme = theme === "light" ? "dark" : "light";
-  console.log("function", colorTheme);
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);

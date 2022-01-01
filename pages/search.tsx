@@ -9,14 +9,38 @@ import { wrapper } from "../store";
 import { searchDataRequesting } from "../store/actions";
 import { format } from "date-fns";
 import Map from "../components/map/map";
+import { useEffect, useState } from "react";
 
 function Search() {
   const router = useRouter();
+
+  const [t, setT] = useState(false);
 
   const { location, startDate, endDate, noOfGuests }: any = router.query;
   const formattedStartDate = format(new Date(startDate), "dd MMMM yyyy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yyyy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
+
+  useEffect(() => {
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (document.documentElement.scrollTop > 100) {
+        setT(true);
+      } else {
+        setT(false);
+      }
+    }
+  }, []);
+
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 700,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="dark:text-gray-200">
@@ -24,14 +48,18 @@ function Search() {
         placeHolder={`${location} | ${formattedStartDate}-${formattedEndDate} | ${noOfGuests} `}
         searchPage={true}
       />
-      <div className="relative mt-[80px]  lg:mt-[40px] h-[200px] sm:h-[300px] lg:h-[400px] xl:h-[450px] 2xl:h-[600px]">
-        <Image
-          src="https://news.airbnb.com/wp-content/uploads/sites/4/2021/01/Option_4_RET_Crop.jpg?w=2048"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-        />
+      <div className="relative overflow-hidden">
+        <Map />
+        <button
+          onClick={handleBackToTop}
+          className={`${
+            t ? "translate-y-16" : "translate-y-0"
+          } transition transform duration-200 absolute bottom-3 left-1/2 bg-slate-50 text-black p-3 rounded-lg`}
+        >
+          down
+        </button>
       </div>
+
       <div className="py-16 px-20 flex flex-col space-y-4">
         <p className="p-3 bg-white shadow-lg max-w-lg rounded-lg dark:bg-gray-900">
           300+ stays - {range} - for {noOfGuests} guests
@@ -56,12 +84,7 @@ function Search() {
           </div>
         </div>
       </div>
-      <main className="flex">
-        <AllPlaces />
-        <section className="hidden xl:inline-flex xl:min-w-[600px]">
-          <Map />
-        </section>
-      </main>
+      <AllPlaces />
       <Footer />
     </div>
   );
