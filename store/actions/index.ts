@@ -2,6 +2,7 @@ import { ACTION_TYPES } from "../../constants/actionTypes";
 import {
   ExploreDataRequesting,
   LiveAnywhereRequesting,
+  Mode,
   SearchDataRequesting,
 } from "../../constants/actionTypes/actionTypes.types";
 import { exploreDataModel } from "../../modelsType/exploreDataModel/index.types";
@@ -27,4 +28,8 @@ export const searchDataRequesting = (
 ): SearchDataRequesting => ({
   type: ACTION_TYPES.SEARCH_DATA_REQUESTING,
   payload,
+});
+
+export const changeMode = (): Mode => ({
+  type: ACTION_TYPES.MODE,
 });

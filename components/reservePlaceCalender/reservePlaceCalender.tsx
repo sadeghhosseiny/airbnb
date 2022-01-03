@@ -4,13 +4,21 @@ import "react-date-range/dist/theme/default.css";
 import { DateRangePicker, DateRange } from "react-date-range";
 import { useRouter } from "next/router";
 import { UsersIcon } from "@heroicons/react/solid";
+import useDarkMode from "../../hook/useDarkMode";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers";
 
-function ReservePlaceCalender({ colorTheme, setInputVal, inputVal }) {
+function ReservePlaceCalender({ theme, setInputVal, inputVal }) {
   const [startDate, setstartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState<number>(1);
 
+  const state = useSelector((state: RootState) => ({
+    mode: state?.modeReducer?.mode,
+  }));
+
   const router = useRouter();
+  useDarkMode();
 
   const cancelBooking = (e: React.MouseEvent<HTMLButtonElement>) => {
     setInputVal("");
@@ -43,9 +51,11 @@ function ReservePlaceCalender({ colorTheme, setInputVal, inputVal }) {
     inputVal && (
       <div
         className={`${
-          colorTheme == "light" ? "dark-style" : ""
+          theme == "dark" ? "dark-style" : ""
         } flex flex-col col-span-3 p-2 mt-2 shadow-lg rounded-lg mx-auto dark:bg-black dark:text-gray-200`}
       >
+        {/* {console.log("Mode ", state.mode)} */}
+        {console.log("CTM ", theme)}
         <div className="sm-max:hidden">
           <DateRangePicker
             ranges={[selectionRange]}

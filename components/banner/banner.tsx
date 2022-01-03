@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { changeMode } from "../../store/actions";
 
 function Banner() {
   return (
@@ -14,7 +15,10 @@ function Banner() {
         <p className="text-2xl lg:text-4xl font-bold">
           Not sure where to go? Perfect.
         </p>
-        <button className="px-7 py-4 rounded-full mt-4 bg-white shadow-xl dark:bg-gray-900 active:scale-90 transition transform duration-200">
+        <button
+          onClick={() => changeMode()}
+          className="px-7 py-4 rounded-full mt-4 bg-white shadow-xl dark:bg-gray-900 active:scale-90 transition transform duration-200"
+        >
           <p
             className="font-bold
          text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-fuchsia-600 to-fuchsia-500"

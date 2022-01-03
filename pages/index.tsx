@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPropsResult } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Banner from "../components/banner/banner";
 import Header from "../components/header/header";
@@ -10,41 +10,24 @@ import {
 import { END } from "redux-saga";
 import BodyOfContents from "../components/bodyOfContents/bodyOfContents";
 import Footer from "../components/footer/footer";
-import MobileNav from "../components/mobileNav/mobileNav";
 import GifBanner from "../components/gifBanner/gifBanner";
-import { useEffect, useState } from "react";
+import MobileNav from "../components/mobileNav/mobileNav";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
   return (
     <div>
       <Head>
         <title>Airbnb</title>
         <link rel="shortcut icon" href="https://www.airbnb.co.in/favicon.ico" />
       </Head>
-      {loading ? (
-        <div className="flex items-center justify-center min-h-screen flex-col">
-          <img
-            className=""
-            src="https://media.giphy.com/media/5YbQYuAnMfNkUU6GpT/giphy.gif"
-          />
-        </div>
-      ) : (
-        <>
-          <Header placeHolder="" searchPage={false} />
-          <Banner />
-          <GifBanner />
-          <BodyOfContents />
-          <Footer />
-        </>
-      )}
+      <>
+        <Header placeHolder="" searchPage={false} />
+        <Banner />
+        <GifBanner />
+        <BodyOfContents />
+        <MobileNav />
+        <Footer />
+      </>
     </div>
   );
 }

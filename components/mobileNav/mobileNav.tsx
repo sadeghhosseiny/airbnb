@@ -7,23 +7,19 @@ import {
   UserIcon,
 } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import useDarkMode from "../../hook/useDarkMode";
+import { changeMode } from "../../store/actions";
 
 function MobileNav() {
   const [isClicked, setIsClicked] = useState(false);
-  const [colorTheme, setTheme]: any = useDarkMode();
+  // const [mode]: any = useDarkMode();
+  const [theme, setTheme]: any = useDarkMode();
 
-  useEffect(() => {
-    console.log("localStorage.themeyg iyg iygiuyg8i7yfo8if");
-    setTheme(localStorage.theme);
-  }, [colorTheme]);
+  const dispatch = useDispatch();
 
   return (
     <div className="block md:hidden z-50 relative">
-      {console.log(
-        "Local storage ",
-        typeof window !== "undefined" ? localStorage.theme : "",
-      )}
       <div
         onClick={() => setIsClicked(!isClicked)}
         className={`cursor-pointer flex flex-col justify-center items-center w-[50px] h-[50px] 
@@ -31,6 +27,7 @@ function MobileNav() {
         isClicked ? "bg-red-500" : "bg-gray-900 dark:bg-zinc-600"
       } transition duration-300`}
       >
+        {/* {console.log("mobile Nevbar ", colorTheme)} */}
         <span
           className={`${
             isClicked ? "rotate-45" : "-translate-y-2"
@@ -69,11 +66,12 @@ function MobileNav() {
           Reserves
         </div>
         <div
-          onClick={() => setTheme(colorTheme)}
+          onClick={() => {
+            setTheme(theme);
+          }}
           className="flex cursor-pointer"
         >
-          {console.log("color theme NAV MOBILE ", colorTheme)}
-          {colorTheme == "dark" ? (
+          {theme == "dark" ? (
             <MoonIcon className="h-5 mr-2" />
           ) : (
             <SunIcon className="h-5 mr-2" />

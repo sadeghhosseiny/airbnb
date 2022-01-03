@@ -13,6 +13,8 @@ import logo from "../../airbnb-logo.png";
 import ReservePlaceCalender from "../reservePlaceCalender/reservePlaceCalender";
 import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import useDarkMode from "../../hook/useDarkMode";
+import { useDispatch } from "react-redux";
+import { changeMode } from "../../store/actions";
 
 type propTypes = {
   searchPage: boolean;
@@ -23,26 +25,42 @@ function Header({ searchPage, placeHolder }: propTypes) {
   const [showWhiteHeader, setShowWhiteHeader] = useState(false);
   const [inputVal, setInputVal] = useState<string | null>("");
 
-  const [colorTheme, setTheme]: any = useDarkMode();
+  // const [mode]: any = useDarkMode();
+  const [theme, setTheme]: any = useDarkMode();
 
   const router = useRouter();
+
+  const dispatch = useDispatch();
 
   const handleSetInput = (e: React.FormEvent<HTMLInputElement>) => {
     setInputVal(e.currentTarget.value);
   };
 
-  useEffect(() => {
-    window.onscroll = function () {
-      scrollFunction();
-    };
+  // useEffect(() => {
+  //   window.onscroll = function () {
+  //     scrollFunction();
+  //   };
 
-    function scrollFunction() {
-      if (document.documentElement.scrollTop > 50) {
+  //   function scrollFunction() {
+  //     if (document.documentElement.scrollTop > 50) {
+  //       setShowWhiteHeader(true);
+  //     } else {
+  //       setShowWhiteHeader(false);
+  //     }
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const listener = () => {
+      if (window.scrollY > 80) {
         setShowWhiteHeader(true);
-      } else {
-        setShowWhiteHeader(false);
-      }
-    }
+      } else setShowWhiteHeader(false);
+    };
+    window.addEventListener("scroll", listener);
+
+    return () => {
+      window.removeEventListener("scroll", listener);
+    };
   }, []);
 
   return (
@@ -65,7 +83,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
         onClick={() => router.push("/")}
         className={`${
           showWhiteHeader ? "h-8" : "h-10"
-        }  relative flex items-center my-auto sm-max:w-10 sm-max:h-10 cursor-pointer transition-all transform duration-500`}
+        }  relative flex items-center my-auto sm-max:w-10 sm-max:h-10 cursor-pointer transition-all transform duration-300`}
       >
         <Image
           src="https://links.papareact.com/qd3"
@@ -106,15 +124,14 @@ function Header({ searchPage, placeHolder }: propTypes) {
         } hidden md:flex items-center space-x-4 justify-end`}
       >
         <p className="cursor-pointer hidden lg:block">Become a host</p>
-        {console.log("CT header ", colorTheme)}
-        {colorTheme == "dark" ? (
+        {theme == "dark" ? (
           <MoonIcon
-            onClick={() => setTheme(colorTheme)}
+            onClick={() => setTheme(theme)}
             className="h-6 cursor-pointer"
           />
         ) : (
           <SunIcon
-            onClick={() => setTheme(colorTheme)}
+            onClick={() => setTheme(theme)}
             className="h-6 cursor-pointer"
           />
         )}
@@ -125,7 +142,8 @@ function Header({ searchPage, placeHolder }: propTypes) {
         </div>
       </div>
       <ReservePlaceCalender
-        colorTheme={colorTheme}
+        // mode={mode}
+        theme={theme}
         setInputVal={setInputVal}
         inputVal={inputVal}
       />

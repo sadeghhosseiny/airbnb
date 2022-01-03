@@ -36,7 +36,12 @@ const exploreDataReducer = (
       };
     }
     case ACTION_TYPES.EXPLORE_DATA_ERROR: {
-      return { requesting: false, data: null, error: "errrrr", success: false };
+      return {
+        requesting: false,
+        data: null,
+        error: "errrrr",
+        success: false,
+      };
     }
     default:
       return state;

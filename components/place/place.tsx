@@ -2,6 +2,7 @@ import Image from "next/image";
 import { HeartIcon } from "@heroicons/react/outline";
 import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
+import image from "../../public/unloadImage.jpg";
 
 type placeType = {
   place: {
@@ -29,7 +30,7 @@ function Place({ place }: placeType) {
     >
       <div className="relative mb-5 md:mb-0 h-64 w-full md:h-72 md:w-72 lg:h-80 lg:w-80 rounded-lg overflow-hidden">
         <Image
-          src={img}
+          src={title == "London Studio Apartments" ? image : img}
           layout="fill"
           objectFit="cover"
           className="cursor-pointer rounded-lg scale-125 group-hover:scale-100 transition transform duration-300"

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeMode } from "../../store/actions";
 import { RootState } from "../../store/reducers";
 import ExploreNearby from "../exploreNearby/exploreNearby";
 import LargeCard from "../largeCard/largeCard";
@@ -9,11 +10,19 @@ function BodyOfContents() {
   const state = useSelector((state: RootState) => ({
     exploreData: state?.exploreDataReducer?.data,
     liveAnywhereData: state?.liveAnywhereReducer?.data,
+    mode: state?.modeReducer?.mode,
   }));
+
+  const dispatch = useDispatch();
 
   return (
     <div className="relative m-5 p-5 lg:my-10 lg:p-10 max-w-7xl xl:mx-auto shadow-md rounded-md bg-white dark:bg-gray-900 dark:text-gray-200 transition duration-300">
-      <h1 className="text-3xl font-sans mb-5">Explore Nearby</h1>
+      <h1
+        onClick={() => dispatch(changeMode())}
+        className="text-3xl font-sans mb-5"
+      >
+        Explore Nearby
+      </h1>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {state?.exploreData?.map((item, i) => (
           <ExploreNearby key={i} item={item} />

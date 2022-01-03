@@ -9,6 +9,10 @@ export interface ExploreState {
   error: string | boolean;
 }
 
+export interface modeState {
+  mode: string;
+}
+
 export interface LiveAnywherState {
   requesting: boolean;
   success: boolean;

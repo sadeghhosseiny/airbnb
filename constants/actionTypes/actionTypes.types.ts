@@ -48,6 +48,10 @@ export interface SearchDataError {
   payload: string;
 }
 
+export interface Mode {
+  type: ACTION_TYPES.MODE;
+}
+
 export interface HYDRATE {
   type: ACTION_TYPES.HYDRATE;
   payload: {
@@ -67,4 +71,5 @@ export type Actions =
   | SearchDataRequesting
   | SearchDataSuccess
   | SearchDataError
+  | Mode
   | HYDRATE;
