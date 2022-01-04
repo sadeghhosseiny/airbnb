@@ -7,23 +7,29 @@ import { RootState } from "../store/reducers";
 
 export function useDarkMode() {
   const [theme, setTheme] = useState(
-    typeof window !== "undefined" ? localStorage.theme : "light",
+    typeof window !== "undefined"
+      ? localStorage.theme
+        ? localStorage.theme
+        : "light"
+      : "light",
   );
   // const state = useSelector((state: RootState) => ({
   //   mode: state?.modeReducer?.mode,
   // }));
   // const temp = state?.mode == "light" ? "dark" : "light";
 
-  const colorTheme = theme === "light" ? "dark" : "light";
+  // const colorTheme = theme === "light" ? "dark" : "light";
+  const dark = "dark";
+  const light = "light";
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove(colorTheme);
+    root.classList.remove(theme == light ? dark : light);
     root.classList.add(theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  return [colorTheme, setTheme];
+  return [theme, setTheme];
 }
 
 export default useDarkMode;

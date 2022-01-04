@@ -27,6 +27,7 @@ function MobileNav() {
         isClicked ? "bg-red-500" : "bg-gray-900 dark:bg-zinc-600"
       } transition duration-300`}
       >
+        {console.log(theme)}
         {/* {console.log("mobile Nevbar ", colorTheme)} */}
         <span
           className={`${
@@ -67,11 +68,11 @@ function MobileNav() {
         </div>
         <div
           onClick={() => {
-            setTheme(theme);
+            setTheme(theme == "light" ? "dark" : "light");
           }}
           className="flex cursor-pointer"
         >
-          {theme == "dark" ? (
+          {theme == "light" ? (
             <MoonIcon className="h-5 mr-2" />
           ) : (
             <SunIcon className="h-5 mr-2" />

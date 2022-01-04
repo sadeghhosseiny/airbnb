@@ -11,6 +11,7 @@ import Map from "../components/map/map";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import MobileNav from "../components/mobileNav/mobileNav";
+import Fade from "react-reveal/Fade";
 
 function Search() {
   const router = useRouter();
@@ -65,39 +66,41 @@ function Search() {
           onClick={handleBackToTop}
           className={`${
             hideBtn ? "translate-y-16" : "translate-y-0"
-          } transition transform duration-200 absolute bottom-3 left-1/2 bg-slate-50 text-black p-3 rounded-full`}
+          } transition transform duration-200 absolute bottom-3 left-1/2 bg-gray-200 dark:bg-slate-800 p-3 rounded-full`}
         >
           <ChevronDownIcon className="h-6" />
         </button>
       </div>
 
-      <div className="py-16 px-20 flex flex-col space-y-4">
-        <p className="p-3 bg-white shadow-lg max-w-lg rounded-lg dark:bg-gray-900">
-          300+ stays -<span className="text-red-400"> {range} </span>- for{" "}
-          {noOfGuests} guests
-        </p>
-        <h1 className="text-2xl font-semibold">Stays in {location}</h1>
-        <div className="w-full">
-          <div className="max-w-5xl space-x-4 space-y-3">
-            <div className="inline-block w-auto">
-              <div className="pill dark:bg-gray-900">
-                Cancellation Flexebility
+      <Fade>
+        <div className="py-16 px-20 flex flex-col space-y-4">
+          <p className="p-3 bg-white shadow-lg max-w-lg rounded-lg dark:bg-gray-900">
+            300+ stays -<span className="text-red-400"> {range} </span>- for{" "}
+            {noOfGuests} guests
+          </p>
+          <h1 className="text-2xl font-semibold">Stays in {location}</h1>
+          <div className="w-full">
+            <div className="max-w-5xl space-x-4 space-y-3">
+              <div className="inline-block w-auto">
+                <div className="pill dark:bg-gray-900">
+                  Cancellation Flexebility
+                </div>
               </div>
-            </div>
-            <div className="inline-block w-auto">
-              <div className="pill dark:bg-gray-900">Type of Place</div>
-            </div>
-            <div className="inline-block w-auto">
-              <div className="pill dark:bg-gray-900">Price</div>
-            </div>
-            <div className="inline-block w-auto">
-              <div className="pill dark:bg-gray-900">Rooms and Beds</div>
+              <div className="inline-block w-auto">
+                <div className="pill dark:bg-gray-900">Type of Place</div>
+              </div>
+              <div className="inline-block w-auto">
+                <div className="pill dark:bg-gray-900">Price</div>
+              </div>
+              <div className="inline-block w-auto">
+                <div className="pill dark:bg-gray-900">Rooms and Beds</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <AllPlaces />
-      <MobileNav />
+        <AllPlaces />
+        <MobileNav />
+      </Fade>
       <Footer />
     </div>
   );

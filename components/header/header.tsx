@@ -72,7 +72,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
          searchPage && !showWhiteHeader
            ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
            : showWhiteHeader
-           ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-5 shadow-lg"
+           ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-5 shadow-lg dark:shadow-slate-700"
            : inputVal
            ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
            : "bg-transparent p-8"
@@ -123,15 +123,17 @@ function Header({ searchPage, placeHolder }: propTypes) {
             : "text-gray-300"
         } hidden md:flex items-center space-x-4 justify-end`}
       >
+        {console.log("theme ", theme)}
+        {/* {console.log("local -> ", localStorage.theme)} */}
         <p className="cursor-pointer hidden lg:block">Become a host</p>
-        {theme == "dark" ? (
+        {theme == "light" ? (
           <MoonIcon
-            onClick={() => setTheme(theme)}
+            onClick={() => setTheme("dark")}
             className="h-6 cursor-pointer"
           />
         ) : (
           <SunIcon
-            onClick={() => setTheme(theme)}
+            onClick={() => setTheme("light")}
             className="h-6 cursor-pointer"
           />
         )}
