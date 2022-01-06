@@ -5,7 +5,7 @@ import {
   SearchIcon,
   UserCircleIcon,
 } from "@heroicons/react/solid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useRouter } from "next/router";
@@ -15,6 +15,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import useDarkMode from "../../hook/useDarkMode";
 import { useDispatch } from "react-redux";
 import { changeMode } from "../../store/actions";
+import HandleScroll from "../handleScroll/handleScroll";
 
 type propTypes = {
   searchPage: boolean;
@@ -22,7 +23,6 @@ type propTypes = {
 };
 
 function Header({ searchPage, placeHolder }: propTypes) {
-  const [showWhiteHeader, setShowWhiteHeader] = useState(false);
   const [inputVal, setInputVal] = useState<string | null>("");
 
   const [mode]: any = useDarkMode();
@@ -35,18 +35,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
     setInputVal(e.currentTarget.value);
   };
 
-  useEffect(() => {
-    const listener = () => {
-      if (window.scrollY > 80) {
-        setShowWhiteHeader(true);
-      } else setShowWhiteHeader(false);
-    };
-    window.addEventListener("scroll", listener);
-
-    return () => {
-      window.removeEventListener("scroll", listener);
-    };
-  }, []);
+  const showWhiteHeader = HandleScroll(50);
 
   return (
     <header

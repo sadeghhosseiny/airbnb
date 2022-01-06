@@ -9,50 +9,26 @@ import { searchDataRequesting } from "../store/actions";
 import { format } from "date-fns";
 import Map from "../components/map/map";
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import { useEffect, useState } from "react";
 import MobileNav from "../components/mobileNav/mobileNav";
 import Fade from "react-reveal/Fade";
+import HandleScroll from "../components/handleScroll/handleScroll";
 
 function Search() {
   const router = useRouter();
-
-  const [hideBtn, setHideBtn] = useState(false);
 
   const { location, startDate, endDate, noOfGuests }: any = router.query;
   const formattedStartDate = format(new Date(startDate), "dd MMMM yyyy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yyyy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
-  const handleBackToTop = () => {
+  const handleDownToPlaces = () => {
     window.scrollTo({
       top: 700,
       behavior: "smooth",
     });
   };
 
-  // const onScroll = () => {
-  //   if (window.scrollY > 350) {
-  //     setHideBtn(true);
-  //   } else {
-  //     setHideBtn(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   onScroll();
-  // }, []);
-
-  useEffect(() => {
-    const listener = () => {
-      if (window.scrollY > 250) {
-        setHideBtn(true);
-      } else setHideBtn(false);
-    };
-    window.addEventListener("scroll", listener);
-
-    return () => {
-      window.removeEventListener("scroll", listener);
-    };
-  }, []);
+  const hideBtn = HandleScroll(250);
 
   return (
     <div className="dark:text-gray-200">
@@ -63,7 +39,7 @@ function Search() {
       <div className="relative overflow-hidden">
         <Map />
         <button
-          onClick={handleBackToTop}
+          onClick={handleDownToPlaces}
           className={`${
             hideBtn ? "translate-y-16" : "translate-y-0"
           } transition transform duration-200 absolute bottom-3 left-1/2 bg-gray-200 dark:bg-slate-800 p-3 rounded-full`}
@@ -98,9 +74,9 @@ function Search() {
             </div>
           </div>
         </div>
-        <AllPlaces />
-        <MobileNav />
       </Fade>
+      <AllPlaces />
+      <MobileNav />
       <Footer />
     </div>
   );
