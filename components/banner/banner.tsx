@@ -23,7 +23,7 @@ function Banner() {
             className="font-bold
          text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-fuchsia-600 to-fuchsia-500"
           >
-            I'm flexible
+            I&apos;m flexible
           </p>
         </button>
       </div>

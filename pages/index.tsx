@@ -19,6 +19,11 @@ export default function Home() {
       <Head>
         <title>Airbnb</title>
         <link rel="shortcut icon" href="https://www.airbnb.co.in/favicon.ico" />
+        <meta
+          name="description"
+          content="airbnb clone made by sadegh using Next.js, Tailwind.css, etc"
+        />
+        <meta name="keywords" content="airbnb-clone" />
       </Head>
       <>
         <Header placeHolder="" searchPage={false} />

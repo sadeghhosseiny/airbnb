@@ -6,7 +6,7 @@ import {
   SunIcon,
   UserIcon,
 } from "@heroicons/react/outline";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import useDarkMode from "../../hook/useDarkMode";
 import { changeMode } from "../../store/actions";
