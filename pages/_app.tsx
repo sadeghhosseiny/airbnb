@@ -2,10 +2,10 @@ import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { wrapper } from "../store";
 import "../styles/globals.css";
-import MobileNav from "../components/mobileNav/mobileNav";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import { useEffect, useState } from "react";
+import Intro from "../components/intro/intro";
 
 const progress = new ProgressBar({
   color: "#FE595E",
@@ -25,23 +25,14 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 4000);
   }, []);
 
-  return (
+  return loading ? (
+    <Intro />
+  ) : (
     <div className="bg-gray-100 dark:bg-slate-800 transition duration-300">
-      {loading ? (
-        <div className="flex items-center justify-center min-h-screen flex-col">
-          <img
-            className=""
-            src="https://media.giphy.com/media/5YbQYuAnMfNkUU6GpT/giphy.gif"
-          />
-        </div>
-      ) : (
-        <>
-          <Component {...pageProps} />
-        </>
-      )}
+      <Component {...pageProps} />
     </div>
   );
 };

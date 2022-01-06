@@ -13,8 +13,7 @@ import { changeMode } from "../../store/actions";
 
 function MobileNav() {
   const [isClicked, setIsClicked] = useState(false);
-  // const [mode]: any = useDarkMode();
-  const [theme, setTheme]: any = useDarkMode();
+  const [mode]: any = useDarkMode();
 
   const dispatch = useDispatch();
 
@@ -27,8 +26,6 @@ function MobileNav() {
         isClicked ? "bg-red-500" : "bg-gray-900 dark:bg-zinc-600"
       } transition duration-300`}
       >
-        {console.log(theme)}
-        {/* {console.log("mobile Nevbar ", colorTheme)} */}
         <span
           className={`${
             isClicked ? "rotate-45" : "-translate-y-2"
@@ -67,12 +64,10 @@ function MobileNav() {
           Reserves
         </div>
         <div
-          onClick={() => {
-            setTheme(theme == "light" ? "dark" : "light");
-          }}
+          onClick={() => dispatch(changeMode())}
           className="flex cursor-pointer"
         >
-          {theme == "light" ? (
+          {mode == "light" ? (
             <MoonIcon className="h-5 mr-2" />
           ) : (
             <SunIcon className="h-5 mr-2" />

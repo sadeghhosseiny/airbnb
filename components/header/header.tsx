@@ -25,8 +25,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
   const [showWhiteHeader, setShowWhiteHeader] = useState(false);
   const [inputVal, setInputVal] = useState<string | null>("");
 
-  // const [mode]: any = useDarkMode();
-  const [theme, setTheme]: any = useDarkMode();
+  const [mode]: any = useDarkMode();
 
   const router = useRouter();
 
@@ -35,20 +34,6 @@ function Header({ searchPage, placeHolder }: propTypes) {
   const handleSetInput = (e: React.FormEvent<HTMLInputElement>) => {
     setInputVal(e.currentTarget.value);
   };
-
-  // useEffect(() => {
-  //   window.onscroll = function () {
-  //     scrollFunction();
-  //   };
-
-  //   function scrollFunction() {
-  //     if (document.documentElement.scrollTop > 50) {
-  //       setShowWhiteHeader(true);
-  //     } else {
-  //       setShowWhiteHeader(false);
-  //     }
-  //   }
-  // }, []);
 
   useEffect(() => {
     const listener = () => {
@@ -123,17 +108,15 @@ function Header({ searchPage, placeHolder }: propTypes) {
             : "text-gray-300"
         } hidden md:flex items-center space-x-4 justify-end`}
       >
-        {console.log("theme ", theme)}
-        {/* {console.log("local -> ", localStorage.theme)} */}
         <p className="cursor-pointer hidden lg:block">Become a host</p>
-        {theme == "light" ? (
+        {mode == "light" ? (
           <MoonIcon
-            onClick={() => setTheme("dark")}
+            onClick={() => dispatch(changeMode())}
             className="h-6 cursor-pointer"
           />
         ) : (
           <SunIcon
-            onClick={() => setTheme("light")}
+            onClick={() => dispatch(changeMode())}
             className="h-6 cursor-pointer"
           />
         )}
@@ -144,8 +127,7 @@ function Header({ searchPage, placeHolder }: propTypes) {
         </div>
       </div>
       <ReservePlaceCalender
-        // mode={mode}
-        theme={theme}
+        mode={mode}
         setInputVal={setInputVal}
         inputVal={inputVal}
       />
