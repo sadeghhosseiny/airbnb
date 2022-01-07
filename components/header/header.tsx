@@ -42,15 +42,15 @@ function Header({ searchPage, placeHolder }: propTypes) {
       className={`fixed w-full top-0 z-50 ${
         inputVal ? "grid" : "sm-max:flex sm-min:grid"
       } sm-max:justify-between grid-cols-3 z-10
-       ${
-         searchPage && !showWhiteHeader
-           ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
-           : showWhiteHeader
-           ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-5 shadow-lg dark:shadow-slate-700"
-           : inputVal
-           ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
-           : "bg-transparent p-8"
-       } 
+      ${
+        searchPage && !showWhiteHeader
+          ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
+          : showWhiteHeader
+          ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-5 shadow-lg dark:shadow-slate-700"
+          : inputVal
+          ? "bg-white dark:bg-slate-800 dark:text-gray-200 p-8"
+          : "bg-transparent p-8"
+      } 
     transition-all sm-max:p-4 transform duration-300`}
     >
       <div

@@ -30,3 +30,12 @@
 .dark-style .rdrStaticRangeLabel:hover {
   background: #3c424a !important;
 }
+
+.popup-dark-style .mapboxgl-popup-content {
+  background: #1e293b !important;
+  transition: 0.2s linear;
+}
+
+.popup .mapboxgl-popup-content {
+  transition: 0.2s linear;
+}
