@@ -5,14 +5,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers";
 
 function Map() {
-  const state = useSelector(
-    (state: RootState) => state?.searchDataReducer?.data,
-  );
+  const state = useSelector((state: RootState) => ({
+    data: state?.searchDataReducer?.data,
+    mode: state?.modeReducer?.mode,
+  }));
 
   const [selectedLoaction, setSelectedLoaction] = useState<any>({});
 
   // transform the state array to this object -> {latitude: '123', longitude: '345'}
-  const coordinates = state?.map((place) => ({
+  const coordinates = state?.data?.map((place) => ({
     latitude: place.lat,
     longitude: place.long,
   }));
@@ -37,7 +38,7 @@ function Map() {
       onViewportChange={(nextViewPort) => setViewport(nextViewPort)}
     >
       <NavigationControl className="bottom-10 left-2" />
-      {state?.map((place, i) => (
+      {state?.data?.map((place, i) => (
         <div key={i}>
           <Marker
             longitude={place.long}
@@ -60,7 +61,9 @@ function Map() {
               closeOnClick={true}
               longitude={place.long}
               latitude={place.lat}
-              className="z-50"
+              className={`z-50 ${
+                state?.mode == "dark" ? "popup-dark-style" : "popup"
+              } dark:text-gray-200`}
             >
               {place.title}
             </Popup>

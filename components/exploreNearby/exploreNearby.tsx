@@ -20,7 +20,9 @@ function ExploreNearby({ item }: itemTypes) {
         />
       </div>
       <div className="pl-4 lg:group-hover:pl-7 transition-all duration-300">
-        <p className="text-md lg:text-xl">{item.location}</p>
+        <p className="text-md lg:text-xl text-gray-700 dark:text-gray-200">
+          {item.location}
+        </p>
         <p className="text-gray-500 dark:text-gray-200 opacity-100 md:opacity-0 translate-y-0 md:translate-y-32 group-hover:translate-y-0 group-hover:opacity-100 transition-all transform duration-300 ease-out">
           {item.distance}
         </p>
